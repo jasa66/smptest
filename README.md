@@ -15,9 +15,11 @@ requires following environment valiables to be set:
 
 # Clone SW:
 - git clone https://github.com/jasa66/smptest.git
-  - this is pointing at smp branch direcly (smp branch cheked out)
 - cd smptest
+- git clone https://github.com/FreeRTOS/FreeRTOS-Kernel.git
+- cd FreeRTOS-Kernel
 - git submodule update --init --recursive
+- git checkout smp
 
 # In VSCode
 - Clean Reconfigure all projects
