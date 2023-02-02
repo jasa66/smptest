@@ -1,0 +1,78 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Pico Linux Debug",
+            "cwd": "${workspaceRoot}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            // This may need to be arm-none-eabi-gdb depending on your system
+            "gdbPath" : "gdb-multiarch",
+            "device": "RP2040",
+            "configFiles": [
+                "interface/picoprobe.cfg",
+                "target/rp2040.cfg"
+            ],
+            "svdFile": "${env:PICO_SDK_PATH}/src/rp2040/hardware_regs/rp2040.svd",
+            "runToEntryPoint": "main",
+            // Work around for stopping at main on restart
+            "postRestartCommands": [
+                "break main",
+                "continue"
+            ],
+            "searchDir": ["${env:PICO_SDK_PATH}/openocd/tcl"],
+        },
+        {
+            "name": "RPi4 Pico Debug",
+            "cwd": "${workspaceRoot}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "serverpath": "$PICO_SDK_PATH/openocd/src/openocd",
+            // This may need to be arm-none-eabi-gdb depending on your system
+            "gdbPath" : "gdb-multiarch",
+            "device": "Pico2040",
+            "configFiles": [
+                "/home/pi/pico/openocd/tcl/interface/raspberrypi-swd.cfg",
+                "/home/pi/pico/openocd/tcl/target/rp2040.cfg"
+            ],
+            "svdFile": "${env:PICO_SDK_PATH}/src/rp2040/hardware_regs/rp2040.svd",
+            "runToEntryPoint": "main",
+            "searchDir": ["${env:PICO_SDK_PATH}/pico/openocd/tcl"],
+            // Work around for stopping at main on restart
+            "postRestartCommands": [
+                "break main",
+                "continue"
+            ],
+            "showDevDebugOutput": "none"
+        },
+        {
+            "name": "OSX Pico Debug",
+            "cwd": "${workspaceRoot}",
+            "executable": "${command:cmake.launchTargetPath}",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "serverpath": "/Users/jasa/projects/openocd/src/openocd",
+            // This may need to be arm-none-eabi-gdb depending on your system
+            "gdbPath" : "arm-none-eabi-gdb",
+            "device": "Pico2040",
+            "configFiles": [
+                "interface/picoprobe.cfg",
+                "target/rp2040.cfg"
+            ],
+            "svdFile": "${env:PICO_SDK_PATH}/src/rp2040/hardware_regs/rp2040.svd",
+            "runToEntryPoint": "main",
+            "searchDir": ["/Users/jasa/projects/openocd/tcl"],
+            // Work around for stopping at main on restart
+            "postRestartCommands": [
+                "break main",
+                "continue"
+            ],
+            "showDevDebugOutput": "none"
+        }
+    ]
+}
