@@ -16,6 +16,7 @@ requires following environment valiables to be set:
 # Clone SW:
 - git clone https://github.com/jasa66/smptest.git
   - this is pointing at smp branch direcly (smp branch cheked out)
+- cd smptest
 - git submodule update --init --recursive
 
 # In VSCode
